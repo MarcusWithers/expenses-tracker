@@ -5,9 +5,11 @@ import React from "react";
 const ExpenseItem = (props) => {
   return (
     <>
-      <div className="flex items-center justify-center space-x-3">
-        <h3 className=" ">{props.name} - </h3>
-        <p className="">${props.amount}</p>
+      <div className="flex flex-col md:flex-row text-center md:text-left items-center justify-center md:space-x-5 text-xl mb-5 p-2">
+        <h3 className=" ">
+          {props.name}: ${props.amount}
+        </h3>
+        <p className="">{props.date}</p>
         <IconButton
           className="button"
           onClick={() => props.onDelete(props.index, props.id)}

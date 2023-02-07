@@ -1,5 +1,7 @@
 import Banner from "@/components/Banner";
+import ExpenseItem from "@/components/ExpenseItem";
 import Expenses from "@/components/Expenses";
+import Overview from "@/components/Overview";
 import {
   addDoc,
   collection,
@@ -25,11 +27,11 @@ export default function Home() {
     });
     return () => snapshot;
   }, []);
-
   const onAddExpense = (expenseData) => {
     addDoc(collection(db, "expenses"), {
       name: expenseData.name,
       amount: expenseData.amount,
+      date: expenseData.date,
     });
   };
 
@@ -38,13 +40,20 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[rgb(71,71,71)] h-screen text-white ">
+    <div className="bg-[rgb(71,71,71)] h-screen text-white snap-y snap-mandatory overflow-scroll ">
       <Banner />
       <section
-        className="max-w-7xl mx-auto p-5 flex justify-center"
+        className="max-w-7xl mx-auto p-5 flex h-screen justify-center snap-start"
         id="expenses-form"
       >
         <Expenses
+          expenses={expenses}
+          onAddExpense={onAddExpense}
+          onDelete={handleDelete}
+        />
+      </section>
+      <section className="snap-center h-screen" id="overview">
+        <Overview
           expenses={expenses}
           onAddExpense={onAddExpense}
           onDelete={handleDelete}

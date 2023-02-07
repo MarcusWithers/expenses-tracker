@@ -1,5 +1,7 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import ExpenseItem from "@/components/ExpenseItem";
+import ExpenseImage from "@/images/expenses-image.jpg";
+import Image from "next/image";
 import React, { useState } from "react";
 import Totals from "./Totals";
 
@@ -13,29 +15,21 @@ const Expenses = (props) => {
     props.onAddExpense(expenses);
   };
   return (
-    <div className="space-y-5">
-      <div className="">
-        <Totals expenses={props.expenses} />
-      </div>
-      <div className="expenses">
-        <div className="expenses_total"></div>
-        <div className="expense_form>">
-          <div>
-            <ExpenseForm
-              expenses={props.expenses}
-              onSubmitHandler={onSubmitHandler}
-            />
-          </div>
-
-          {props.expenses.map((expense, index) => (
-            <ExpenseItem
-              index={index}
-              id={expense.id}
-              name={expense.name}
-              amount={expense.amount}
-              onDelete={props.onDelete}
-            />
-          ))}
+    <div className="space-y-5 m-10 w-full">
+      <div className="flex flex-col md:flex-row bg-white p-5 rounded-xl  justify-evenly h-full items-center">
+        <div className="w-[40%] h-full p-5  mx-auto flex items-center justify-center">
+          <ExpenseForm
+            expenses={props.expenses}
+            onSubmitHandler={onSubmitHandler}
+          />
+        </div>
+        <div className="w-[60%] h-full ">
+          <Image
+            className="object-cover h-full rounded-xl "
+            src={ExpenseImage}
+            alt=""
+            height="100%"
+          />
         </div>
       </div>
     </div>

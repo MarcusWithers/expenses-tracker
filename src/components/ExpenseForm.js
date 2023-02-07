@@ -8,6 +8,7 @@ import React, { useState } from "react";
 const ExpenseForm = (props) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   const nameInputHandler = (event) => {
@@ -24,6 +25,10 @@ const ExpenseForm = (props) => {
     }
   };
 
+  const dateInputHandler = (event) => {
+    setDate(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -38,22 +43,27 @@ const ExpenseForm = (props) => {
     const expenses = {
       name: name,
       amount: parseFloat(amount),
+      date: date,
     };
     setIsValid(true);
     console.log(expenses);
     props.onSubmitHandler(expenses);
     setName("");
     setAmount("");
+    setDate("");
   };
   return (
-    <div>
+    <div className="space-y-3">
+      <div>
+        <h1 className="text-black text-4xl text-center">Expenses Tracker</h1>
+      </div>
       <form
-        className=" flex flex-col rounded-lg bg-red-200 p-5"
+        className=" flex flex-col rounded-lg  p-5 h-fill "
         onSubmit={submitHandler}
       >
         <TextField
           className={`text-field.${!isValid ? "invalid" : ""}`}
-          label="Name"
+          label="Expense"
           value={name}
           variant="outlined"
           type="text"
@@ -86,9 +96,27 @@ const ExpenseForm = (props) => {
             ),
           }}
         />
-        <IconButton type="submit">
-          <AddCircleIcon color="success" />
-        </IconButton>
+        <br />
+        <TextField
+          label="Date"
+          value={date}
+          varaiant="outlined"
+          onChange={dateInputHandler}
+          type="date"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AssignmentIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <div className="flex justify-center items-center mt-2">
+          <h2 className="text-black text-xl">Add Expense</h2>
+          <IconButton type="submit">
+            <AddCircleIcon color="success" />
+          </IconButton>
+        </div>
       </form>
     </div>
   );
