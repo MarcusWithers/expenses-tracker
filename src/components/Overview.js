@@ -11,6 +11,7 @@ const Overview = ({ expenses, onDelete }) => {
       <div className="bg-white h-full text-black rounded-lg p-5 overflow-hidden overflow-y-scroll">
         {expenses.map((expense, index) => (
           <ExpenseItem
+            key={index}
             index={index}
             id={expense.id}
             name={expense.name}
