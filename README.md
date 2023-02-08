@@ -4,4 +4,4 @@ Expenses tracker application that keeps track of and totals your expenses. That 
 <br/>
 
 Technologies Used - <br/>
-NextJS, TailwindCSS, Firebase, MaterialUI, Various React Libraries
+HTML5, React, NextJS, Tailwind CSS, Firebase, MaterialUI, Various React Libraries
